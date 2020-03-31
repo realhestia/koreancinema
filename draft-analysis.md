@@ -313,6 +313,7 @@ ggplot(annual_clean, aes(x = kr_screened, xend = ovs_screened,
 
 #### Number of films in the chart each year
 
+```r
 numbers_total <- group_by(top_ymd, year) %>%
     count() %>%
     rename(total = n)
@@ -335,6 +336,7 @@ ggplot(numbers, aes(x = year)) +
     geom_line(aes(y = korea, colour = "korea")) +
     geom_line(aes(y = overseas, colour = "overseas")) +
     scale_x_continuous(breaks = seq(1998, 2020, 2))
+```
 
 ![](semproj2_hestia_zhang_files/figure-html/in&#32;chart&#32;by&#32;year-1.png)<!-- -->
 
