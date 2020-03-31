@@ -1,5 +1,5 @@
 ---
-title: "Korean Cinema - Semester Project Part 2"
+title: "Korean Cinema - Draft Analysis"
 author: "Hestia Zhang"
 date: "3/31/2020"
 output:
@@ -33,17 +33,11 @@ The [main dataset](http://www.kobis.or.kr/kobis/business/stat/offc/findFormerBox
 
 The [supporting dataset](http://www.kobis.or.kr/kobis/business/stat/them/findYearlyTotalList.do) summarizes the total number of films produced and screened, market shares, box office and sales volumes from 2004 to 2020 (in real-time).
 
-![](/Users/realhestia/Desktop/Semester Project 2/semproj2_hestia_zhang/screenshots/annual.png)
-
 The datasets were downloaded in .xls format and later saved as .xlsx format.
 
 The original datasets were in Korean. The movie titles and film distributors were left untouched, but we’ve changed the column names into English and removed the extra information at the top. We’ve also manually translated the country names into English using the “Replace” function in Excel and double-checked them.
 
-![](/Users/realhestia/Desktop/Semester Project 2/semproj2_hestia_zhang/screenshots/original_data.png)
-
 Films with total audience attendance higher than 10 million were sorted out as a subset for future analysis. It was done in Excel because we wanted to manually collect the English film titles, genre and dates of breaking the 10-million record from [IMDb](https://www.imdb.com/list/ls066789056/) and relevant news. (Note that this step is imperfect from a reproducibility perspective.)
-
-![](/Users/realhestia/Desktop/Semester Project 2/semproj2_hestia_zhang/screenshots/tenmillion.png)
 
   
 #### Loading datasets
@@ -56,69 +50,6 @@ annual <- read_xlsx("kobis_annual_en.xlsx")
 
 options(scipen = 200) # Prevent scientific notation
 
-glimpse(top)
-```
-
-```
-## Observations: 500
-## Variables: 11
-## $ rank              <dbl> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,…
-## $ film_title        <chr> "명량", "극한직업", "신과함께-죄와 벌", "국제시장", "어벤져스: 엔드게임", "…
-## $ release_date      <dttm> 2014-07-30, 2019-01-23, 2017-12-20, 2014-12-17, 2…
-## $ sales             <dbl> 135748398910, 139647979516, 115698654137, 11091346…
-## $ audience_seoul    <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
-## $ audience          <dbl> 17613682, 16264944, 14410754, 14257115, 13934592, …
-## $ screens_seoul     <chr> NA, NA, NA, NA, NA, NA, NA, NA, "S", NA, NA, NA, N…
-## $ screens           <dbl> 1587, 1978, 1912, 966, 2835, 2648, 912, 1064, 167,…
-## $ production_main   <chr> "Korea", "Korea", "Korea", "Korea", "US", "US", "U…
-## $ production_all    <chr> "Korea", "Korea", "Korea", "Korea", "US", "US", "U…
-## $ film_distribution <chr> "씨제이이앤엠(주)", "씨제이이앤엠(주)", "롯데쇼핑㈜롯데엔터테인먼트", "씨제이이앤엠…
-```
-
-```r
-glimpse(tenmillion)
-```
-
-```
-## Observations: 27
-## Variables: 13
-## $ rank              <dbl> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,…
-## $ film_title        <chr> "명량", "극한직업", "신과함께-죄와 벌", "국제시장", "어벤져스: 엔드게임", "…
-## $ film_title_en     <chr> "The Admiral: Roaring Currents", "Extreme Job", "A…
-## $ genre             <chr> "History", "Comedy", "Fantasy", "Drama", "Action",…
-## $ release_date      <dttm> 2014-07-30, 2019-01-23, 2017-12-20, 2014-12-17, 2…
-## $ tenmillion_days   <dbl> 12, 15, 16, 28, 11, 17, 38, 25, 21, 22, 32, 25, 53…
-## $ sales             <dbl> 135748398910, 139647979516, 115698654137, 11091346…
-## $ audience          <dbl> 17613682, 16264944, 14410754, 14257115, 13934592, …
-## $ screens_seoul     <chr> NA, NA, NA, NA, NA, NA, NA, NA, "S", NA, NA, NA, N…
-## $ screens           <dbl> 1587, 1978, 1912, 966, 2835, 2648, 912, 1064, 167,…
-## $ production_main   <chr> "Korea", "Korea", "Korea", "Korea", "US", "US", "U…
-## $ production_all    <chr> "Korea", "Korea", "Korea", "Korea", "US", "US", "U…
-## $ film_distribution <chr> "씨제이이앤엠(주)", "씨제이이앤엠(주)", "롯데쇼핑㈜롯데엔터테인먼트", "씨제이이앤엠…
-```
-
-```r
-glimpse(annual)
-```
-
-```
-## Observations: 18
-## Variables: 15
-## $ year             <chr> "2004", "2005", "2006", "2007", "2008", "2009", "20…
-## $ kr_released      <dbl> 74, 82, 110, 111, 110, 119, 142, 152, 176, 183, 217…
-## $ kr_screened      <dbl> 95, 116, 159, 183, 252, 211, 275, 334, 389, 491, 51…
-## $ kr_sales         <dbl> 239143250406, 451707494794, 568090373200, 479858559…
-## $ kr_audience      <dbl> 37741433, 71346379, 91745620, 75791003, 62047324, 7…
-## $ kr_market_share  <dbl> 0.545, 0.578, 0.636, 0.499, 0.421, 0.487, 0.466, 0.…
-## $ ovs_released     <dbl> 206, 224, 241, 282, 270, 243, 288, 290, 465, 724, 8…
-## $ ovs_screened     <dbl> 205, 298, 322, 428, 551, 502, 521, 607, 842, 1184, …
-## $ ovs_sales        <dbl> 201585655800, 328657484673, 324351764800, 485628064…
-## $ ovs_audience     <dbl> 31513193, 52005680, 52510415, 76231989, 85381315, 7…
-## $ ovs_market_share <dbl> 0.455, 0.422, 0.364, 0.501, 0.579, 0.513, 0.534, 0.…
-## $ total_released   <dbl> 280, 306, 351, 393, 380, 362, 430, 442, 641, 907, 1…
-## $ total_screened   <dbl> 300, 414, 481, 611, 803, 713, 796, 941, 1231, 1675,…
-## $ total_sales      <dbl> 440728906206, 780364979467, 892442138000, 965486624…
-## $ total_audience   <dbl> 69254626, 123352059, 144256035, 152022992, 14742863…
 ```
 
 * The main dataset contains 11 variables and 500 observations.  
@@ -214,7 +145,7 @@ Now we can save the clean datasets using the `write.csv()` function.
 
 ```r
 write.csv(annual_clean, "annual_clean.csv")
-write.csv(top_ymd, "top500_clean.csv") # This is the main dataset
+write.csv(top_ymd, "top500_clean.csv") 
 write.csv(tenmillion_ymd, "tenmillion_clean.csv")
 ```
 
@@ -379,43 +310,6 @@ ggplot(annual_clean, aes(x = kr_screened, xend = ovs_screened,
 ```
 
 ![](semproj2_hestia_zhang_files/figure-html/numbers by year-1.png)<!-- -->
-
-#### Number of films in the chart each year
-
-
-```r
-numbers_total <- group_by(top_ymd, year) %>%
-    count() %>%
-    rename(total = n)
-
-numbers_korea <- filter(top_ymd, production_main == "Korea") %>%
-    group_by(year) %>%
-    count() %>%
-    rename(korea = n)
-
-numbers_ovs <- filter(top_ymd, production_main != "Korea") %>%
-    group_by(year) %>%
-    count() %>%
-    rename(overseas = n)
-
-numbers <- full_join(numbers_korea, numbers_ovs, by = "year") 
-numbers <- full_join(numbers, numbers_total, by = "year")
-   
-ggplot(numbers, aes(x = year)) +
-    geom_line(aes(y = total, colour = "total")) + 
-    geom_line(aes(y = korea, colour = "korea")) +
-    geom_line(aes(y = overseas, colour = "overseas")) +
-    scale_x_continuous(breaks = seq(1998, 2020, 2)) +
-    labs(title = "Number of films in the top500 chart each year", x = "Year", y = "Number of Films", caption = "Source: KOBIS", colour = "Production")
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_path).
-
-## Warning: Removed 1 rows containing missing values (geom_path).
-```
-
-![](semproj2_hestia_zhang_files/figure-html/in chart by year-1.png)<!-- -->
 
 
 ## Conclusions
