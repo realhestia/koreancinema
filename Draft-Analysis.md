@@ -250,7 +250,7 @@ ggplot(top_ymd, aes(x = screens, y = audience, color = production_main)) +
     labs(title = "Do more screens attract more audience?", x = "Number of screens", y = "Audience", caption = "Source: KOBIS")
 ```
 
-![](semproj2_hestia_zhang_files/figure-html/screens and audience-1.png)<!-- -->
+![](semproj2_hestia_zhang_files/figure-html/screens&#32;and&#32;audience-1.png)<!-- -->
 
 #### Which films achieved the fastest 10-million-audience breakthrough?
 
@@ -265,7 +265,7 @@ ggplot(tenmillion_ymd, aes(x = reorder(film_title_en, desc(tenmillion_days)), y 
     labs(title = "Fastest 10-million-audience breakthrough", x = "Film name", y = "Days")
 ```
 
-![](semproj2_hestia_zhang_files/figure-html/ten million days-1.png)<!-- -->
+![](semproj2_hestia_zhang_files/figure-html/ten&#32;million&#32;days-1.png)<!-- -->
 
 #### Which months are the best for big hits?
 
@@ -309,8 +309,34 @@ ggplot(annual_clean, aes(x = kr_screened, xend = ovs_screened,
     labs(title = "Number of films screened in Korea each year", x = "Korean films vs Foreign films", y = "Year", caption = "Source: KOBIS")
 ```
 
-![](semproj2_hestia_zhang_files/figure-html/numbers by year-1.png)<!-- -->
+![](semproj2_hestia_zhang_files/figure-html/numbers&#32;by&#32;year-1.png)<!-- -->
 
+#### Number of films in the chart each year
+
+numbers_total <- group_by(top_ymd, year) %>%
+    count() %>%
+    rename(total = n)
+
+numbers_korea <- filter(top_ymd, production_main == "Korea") %>%
+    group_by(year) %>%
+    count() %>%
+    rename(korea = n)
+
+numbers_ovs <- filter(top_ymd, production_main != "Korea") %>%
+    group_by(year) %>%
+    count() %>%
+    rename(overseas = n)
+
+numbers <- full_join(numbers_korea, numbers_ovs, by = "year") 
+numbers <- full_join(numbers, numbers_total, by = "year")
+   
+ggplot(numbers, aes(x = year)) +
+    geom_line(aes(y = total, colour = "total")) + 
+    geom_line(aes(y = korea, colour = "korea")) +
+    geom_line(aes(y = overseas, colour = "overseas")) +
+    scale_x_continuous(breaks = seq(1998, 2020, 2))
+
+![](semproj2_hestia_zhang_files/figure-html/in&#32;chart&#32;by&#32;year-1.png)<!-- -->
 
 ## Conclusions
 
