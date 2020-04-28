@@ -1,5 +1,6 @@
-# Korean Cinema
+# South Korean Cinema
 
+Read the full story [on GitHub](https://realhestia.github.io/koreancinema/)
 
 ## Introduction
 
