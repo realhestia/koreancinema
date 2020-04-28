@@ -1,0 +1,155 @@
+/* Fonts*/
+
+@font-face {
+  font-family:Atiza;
+  font-weight:400;
+  font-style:normal;  
+  src:url(https://static.axios.com/fonts/axios-site/atiza/atizatext-regular-webfont.woff) format('woff'),url(https://static.axios.com/fonts/axios-site/atiza/atizatext-regular-webfont.ttf) format('truetype');
+}
+
+@font-face {
+  font-family:Atiza;
+  font-weight:300;
+  font-style:normal;  
+  src:url(https://static.axios.com/fonts/axios-site/atiza/atizatext-regular-webfont.woff) format('woff'),url(https://static.axios.com/fonts/axios-site/atiza/atizatext-regular-webfont.ttf) format('truetype');
+}
+
+@font-face {
+  font-family:Atiza;
+  font-weight:400;
+  font-style:italic;
+  src:url(https://static.axios.com/fonts/axios-site/atiza/atizatext-regularitalic-webfont.woff) format('woff'),url(https://static.axios.com/fonts/axios-site/atiza/atizatext-regularitalic-webfont.ttf) format('truetype');
+}
+
+@font-face {
+  font-family:Atiza;
+  font-weight:600;
+  font-style:normal;  
+  src:url(https://static.axios.com/fonts/axios-site/atiza/atizatext-bold-webfont.woff) format('woff'),url(https://static.axios.com/fonts/axios-site/atiza/atizatext-bold-webfont.ttf) format('truetype');
+}
+
+
+/* Main */
+
+body {
+  font-family: Metric, Roboto, sans-serif;
+  text-align: justify;
+  line-height: 1.5;
+  background-color: #FFFFFF;
+  margin: 0;
+}
+
+article {
+  font-family: Atiza, serif;
+  font-size: 18px;
+  font-weight: 300;
+  color: #333335;
+  margin: 24px auto;
+  padding: 0 30px;
+  max-width: 58%;
+  min-width: 400px;
+}
+
+h1 { 
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 1.25;
+  text-align: left;
+  margin: 30px auto;
+  color: #333335;
+}
+
+.byline {
+  font-size: 18px;
+  font-weight: 400;
+  font-family: Metric, Roboto, sans-serif;
+}
+
+.byline p {
+  margin: 0;
+}
+
+.byline a {
+  color: #333335;
+  text-decoration: none;
+}
+
+.byline a:hover {
+  color: #2257da;
+  text-decoration: underline;
+}
+
+#time {
+  color: #737376;
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: 600;
+  text-align: left;
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+.content a {
+  color: #007AAA;
+  text-decoration: underline;
+}
+
+.content a:hover {
+  color: #007AAA;
+  text-decoration: none;
+}
+
+
+/* Graphic */
+
+figure {
+  margin: 32px 0;
+  width: 100%;
+}
+
+figcaption {
+  color: #737376;
+  font-family: Metric, Roboto, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  margin-top: 12px;
+}
+
+figcaption a {
+  color: #737376;
+  text-decoration: underline;
+}
+
+figcaption a:hover {
+  text-decoration: none;
+}
+
+
+/* Footer */
+
+footer {
+  border-top: #e9e9ee 1px solid;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: #737376;
+  text-align: center;
+  font-size: 16px;
+  letter-spacing: 1px;
+  line-height: 2;
+}
+
+footer a {
+  color: #737376;
+  text-decoration: underline;
+}
+
+footer a:hover {
+  color: #737376;
+  text-decoration: none;
+}
