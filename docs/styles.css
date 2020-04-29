@@ -1,38 +1,31 @@
 /* Fonts*/
 
 @font-face {
-  font-family:Atiza;
-  font-weight:400;
-  font-style:normal;  
-  src:url(https://static.axios.com/fonts/axios-site/atiza/atizatext-regular-webfont.woff) format('woff'),url(https://static.axios.com/fonts/axios-site/atiza/atizatext-regular-webfont.ttf) format('truetype');
+  font-family: 'Metric Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Metric Regular'), url('MetricRegular.woff') format('woff');
 }
 
 @font-face {
-  font-family:Atiza;
-  font-weight:300;
-  font-style:normal;  
-  src:url(https://static.axios.com/fonts/axios-site/atiza/atizatext-regular-webfont.woff) format('woff'),url(https://static.axios.com/fonts/axios-site/atiza/atizatext-regular-webfont.ttf) format('truetype');
+  font-family: 'Lora Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Lora Regular'), url('Lora-Regular.woff') format('woff');
 }
 
 @font-face {
-  font-family:Atiza;
-  font-weight:400;
-  font-style:italic;
-  src:url(https://static.axios.com/fonts/axios-site/atiza/atizatext-regularitalic-webfont.woff) format('woff'),url(https://static.axios.com/fonts/axios-site/atiza/atizatext-regularitalic-webfont.ttf) format('truetype');
-}
-
-@font-face {
-  font-family:Atiza;
-  font-weight:600;
-  font-style:normal;  
-  src:url(https://static.axios.com/fonts/axios-site/atiza/atizatext-bold-webfont.woff) format('woff'),url(https://static.axios.com/fonts/axios-site/atiza/atizatext-bold-webfont.ttf) format('truetype');
+  font-family: 'Lora Bold';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Lora Bold'), url('Lora-Bold.woff') format('woff');
 }
 
 
 /* Main */
 
 body {
-  font-family: Metric, Roboto, sans-serif;
+  font-family: "Metric Regular", Roboto, sans-serif;
   text-align: justify;
   line-height: 1.5;
   background-color: #FFFFFF;
@@ -40,9 +33,8 @@ body {
 }
 
 article {
-  font-family: Atiza, serif;
+  font-family: "Lora Regular", serif;
   font-size: 18px;
-  font-weight: 300;
   color: #333335;
   margin: 24px auto;
   padding: 0 30px;
@@ -52,8 +44,8 @@ article {
 
 h1 { 
   font-size: 36px;
-  font-weight: 400;
-  line-height: 1.25;
+  font-weight: bold;
+  line-height: 1.5;
   text-align: left;
   margin: 30px auto;
   color: #333335;
@@ -62,7 +54,8 @@ h1 {
 .byline {
   font-size: 18px;
   font-weight: 400;
-  font-family: Metric, Roboto, sans-serif;
+  font-family: "Metric Regular", Roboto, sans-serif;
+  line-height: 2;
 }
 
 .byline p {
@@ -87,8 +80,8 @@ h1 {
 }
 
 h2 {
-  font-size: 24px;
-  font-weight: 600;
+  font-size: 26px;
+  font-weight: bold;
   text-align: left;
   margin-top: 24px;
   margin-bottom: 24px;
@@ -114,7 +107,7 @@ figure {
 
 figcaption {
   color: #737376;
-  font-family: Metric, Roboto, sans-serif;
+  font-family: "Metric Regular", Roboto, sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 1.5;
@@ -141,7 +134,6 @@ footer {
   text-align: center;
   font-size: 16px;
   letter-spacing: 1px;
-  line-height: 2;
 }
 
 footer a {
